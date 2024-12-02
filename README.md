@@ -74,7 +74,7 @@ curl -X POST http://127.0.0.1:8080/portafolio \
      --data-binary @ingresar_ruta/portafolio.csv
 ```
 #### **Archivo de ejemplo**:
-Basado en el domento proporcionado en el enunciado del desafío: [Descargar archivo CSV de ejemplo](./cartera.csv)
+Basado en el domento proporcionado en el enunciado del desafío: [Descargar archivo CSV de ejemplo](./portafolio.csv)
 
 ### **2. Solicitar Adelanto**
   **Endpoint**: `POST /apply-loan`
