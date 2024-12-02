@@ -38,9 +38,9 @@ Este proyecto implementa una aplicación web en **Rust** que permite calcular el
 2. **Fórmula del Score**:
    - **Descripción**: Se utilizó la fórmula proporcionada en el enunciado.
    - **Fórmula**:
-    Score = (MRR / 1000) - (Churn Rate * 10)
+    Score = (MRR / 100) - (Churn Rate * 10)
    - **Observaciones**:
-     - La división del MRR por \(1000\) y el peso del Churn Rate (\( \times 10 \)) hacen que el score sea difícil de superar el umbral de 70.
+     - La división del MRR por \(100\) y el peso del Churn Rate (\( \times 10 \)) hacen que el score sea difícil de superar el umbral de 70, aun cuando reduje del dividor del MRR a 100 (originalmente 1000 según el enunciado)
 
 3. **Condición para el Préstamo**:
    - **Descripción**: El préstamo máximo se otorga solo si el score supera 70, y su valor es igual al MRR.
@@ -59,20 +59,19 @@ Este proyecto implementa una aplicación web en **Rust** que permite calcular el
 
 A continuación, se muestran ejemplos de cómo consumir los endpoints implementados utilizando `curl`.
 
----
-
 ### **1. Cargar Cartera de Clientes**
-**Endpoint**: `POST /portfolio`
+**Endpoint**: `POST /portafolio`
 
 Este endpoint permite cargar un archivo CSV con la cartera de clientes.
 
 #### **Ejemplo con `curl`**:
-Ubicar documento a procesar y cambiar la ruta (ingresar_ruta)
+Ubicar documento a procesar y cambiar la ruta (ingresar_ruta) si es necesario
 ```bash
 curl -X POST http://127.0.0.1:8080/portafolio \
      -H "Content-Type: text/plain" \
      --data-binary @ingresar_ruta/portafolio.csv
 ```
+
 #### **Archivo de ejemplo**:
 Basado en el domento proporcionado en el enunciado del desafío: [Descargar archivo CSV de ejemplo](./portafolio.csv)
 
@@ -80,17 +79,18 @@ Basado en el domento proporcionado en el enunciado del desafío: [Descargar arch
   **Endpoint**: `POST /apply-loan`
   Este endpoint permite solicitar un adelanto basado en la cartera cargada.
   
-  #### **Ejemplo con `curl`**:
-    ```bash
-    curl -X POST http://127.0.0.1:8080/apply-loan \
-         -H "Content-Type: application/json" \
-         -d '{"monto": 1000}'
-    ```
+#### **Ejemplo con `curl`**:
+```bash
+curl -X POST http://127.0.0.1:8080/apply-loan \
+     -H "Content-Type: application/json" \
+     -d '{"monto": 1000}'
+```
+
 ### **3. Consultar Estado del Préstamo**
 **Endpoint**: `GET /loan-status`
 Este endpoint permite consultar el estado de la solicitud de adelanto.
-  #### **Ejemplo con `curl`**:
-      ```bash
-        curl -X GET http://127.0.0.1:8080/loan-status
-      ```
+#### **Ejemplo con `curl`**:
+```bash
+curl -X GET http://127.0.0.1:8080/loan-status
+```
 
