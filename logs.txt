@@ -1,0 +1,28 @@
+warning: variable does not need to be mutable
+  --> src/main.rs:64:9
+   |
+64 |     let mut churn_rate = 5.0; // Este valor puede ser ajustado según datos adicionales
+   |         ----^^^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: fields `id_cliente`, `ano`, and `mes` are never read
+  --> src/main.rs:15:5
+   |
+14 | struct PortafolioEntry {
+   |        --------------- fields in this struct
+15 |     id_cliente: String,
+   |     ^^^^^^^^^^
+16 |     monto: f64,
+17 |     ano: i32,
+   |     ^^^
+18 |     mes: i32,
+   |     ^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: `levannta_app` (bin "levannta_app") generated 2 warnings (run `cargo fix --bin "levannta_app"` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running `target\debug\levannta_app.exe`
